@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: werpeace-auctions
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PASS
+        generateValue: true
+      - key: DB_PATH
+        value: /data/auctions.db
+    disk:
+      name: auction-data
+      mountPath: /data
+      sizeGB: 1

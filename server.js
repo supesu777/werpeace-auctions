@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASS = process.env.ADMIN_PASS || 'werpeace2026';
 
 // --- Database setup ---
-const db = new Database(path.join(__dirname, 'data', 'auctions.db'));
+const dbPath = process.env.DB_PATH || path.join(__dirname, 'data', 'auctions.db');
+const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 
 db.exec(`
