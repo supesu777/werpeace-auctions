@@ -1,0 +1,54 @@
+{
+  "about": {
+    "title": "About WeRPeace",
+    "mission": "We Work For Peace is a grassroots humanitarian organization dedicated to fostering peace, understanding, and cooperation across communities worldwide. Through art, education, and direct action, we bring people together to build a more peaceful world.",
+    "description": "WeRPeace connects artists, educators, and activists who believe in the transformative power of creative expression and community engagement. Our silent auctions raise funds for humanitarian aid programs in conflict-affected regions, while our events create spaces for dialogue, healing, and hope.\n\nEvery item in our auctions is donated by artists and craftspeople who share our vision. Every dollar raised goes directly to programs that make a tangible difference in people's lives — from providing educational materials in refugee camps to supporting local peacebuilding initiatives.\n\nWe believe that peace is not just the absence of conflict, but the presence of justice, equity, and mutual respect. Join us in making that vision a reality.",
+    "contact": {
+      "email": "info@weworkforpeace.org",
+      "website": "https://www.weworkforpeace.org"
+    }
+  },
+  "blog": [
+    {
+      "title": "Share Your Peace Initiatives: Connect and Collaborate",
+      "excerpt": "In a world filled with conflict and division, the need for peace initiatives has never been more pressing. Whether you're organizing community dialogues, launching educational programs, or creating art for peace, your efforts matter. We believe in the power of connection and collaboration to amplify the impact of individual peace initiatives.",
+      "date": "2026-01-11",
+      "image": "https://static.wixstatic.com/media/6f4e9b_f74ce0e6c4f94fed99986d35b4c71b11~mv2.png"
+    },
+    {
+      "title": "Join Our Silent Auctions for Global Humanitarian Aid",
+      "excerpt": "Silent auctions are not just events; they are opportunities to make a significant impact on the world. By participating in our auctions, you directly fund humanitarian programs that provide relief, education, and hope to communities affected by conflict. Every bid you place is a step toward a more peaceful and equitable world.",
+      "date": "2026-01-11",
+      "image": "https://static.wixstatic.com/media/6f4e9b_63fc994f2eaa4330a6240c9c0f227b3d~mv2.png"
+    },
+    {
+      "title": "Creating Peace: Events That Make a Difference",
+      "excerpt": "In a world often overshadowed by conflict and division, the pursuit of peace is more crucial than ever. Our events bring together diverse voices and perspectives to explore what peace means and how we can build it together. From art exhibitions to community workshops, each event is designed to inspire action and foster understanding.",
+      "date": "2026-01-11",
+      "image": "https://static.wixstatic.com/media/6f4e9b_7525d34adcf541ab9e1d06583156061f~mv2.png"
+    }
+  ],
+  "events": [
+    {
+      "title": "Peace Through Art Exhibition",
+      "date": "2026-03-15",
+      "location": "Community Arts Center, New York",
+      "description": "An immersive exhibition showcasing artwork from artists around the world who use their craft to promote peace and understanding. Features paintings, sculptures, and interactive installations.",
+      "image": "https://static.wixstatic.com/media/6f4e9b_f74ce0e6c4f94fed99986d35b4c71b11~mv2.png"
+    },
+    {
+      "title": "Voices for Peace Community Dialogue",
+      "date": "2026-04-22",
+      "location": "WeRPeace Community Hub",
+      "description": "An open dialogue session bringing together community leaders, activists, and citizens to discuss practical steps for building peace in our neighborhoods and beyond.",
+      "image": "https://static.wixstatic.com/media/6f4e9b_63fc994f2eaa4330a6240c9c0f227b3d~mv2.png"
+    },
+    {
+      "title": "Annual Humanitarian Aid Gala",
+      "date": "2026-06-10",
+      "location": "Grand Hall, Washington DC",
+      "description": "Our flagship fundraising event featuring a live auction, keynote speakers from the peace movement, dinner, and entertainment. All proceeds support humanitarian programs in conflict zones.",
+      "image": "https://static.wixstatic.com/media/6f4e9b_7525d34adcf541ab9e1d06583156061f~mv2.png"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+<%- include('header', { pageTitle: auction.title }) %>
+
+<section class="section auction-detail">
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back to auctions</a>
+
+    <div class="auction-layout">
+      <div class="auction-image">
+        <img src="<%= auction.image %>" alt="<%= auction.title %>">
+        <% if (auction.status === 'closed') { %>
+          <span class="badge badge-sold badge-large">SOLD</span>
+        <% } else { %>
+          <span class="badge badge-live badge-large">LIVE</span>
+        <% } %>
+      </div>
+
+      <div class="auction-info">
+        <h1><%= auction.title %></h1>
+        <p class="auction-category"><%= auction.category %></p>
+        <p class="auction-description"><%= auction.description %></p>
+
+        <% if (auction.status === 'closed' && auction.currentBid) { %>
+          <div class="sold-banner">
+            <p class="sold-text">Sold to <strong><%= auction.highestBidder %></strong></p>
+            <p class="sold-amount">$<%= auction.currentBid.toFixed(2) %></p>
+          </div>
+        <% } else { %>
+          <div class="bid-display">
+            <% if (auction.currentBid) { %>
+              <p class="bid-amount-large">$<%= auction.currentBid.toFixed(2) %></p>
+              <p class="bid-amount-label">Current highest bid</p>
+            <% } else { %>
+              <p class="bid-amount-large">$<%= auction.startingBid.toFixed(2) %></p>
+              <p class="bid-amount-label">Starting bid</p>
+            <% } %>
+            <p class="bid-count-detail"><%= auction.bidCount %> bid<%= auction.bidCount !== 1 ? 's' : '' %> placed</p>
+          </div>
+        <% } %>
+
+        <% if (flash.success) { %>
+          <div class="alert alert-success"><%= flash.success %></div>
+        <% } %>
+        <% if (flash.error) { %>
+          <div class="alert alert-error"><%= flash.error %></div>
+        <% } %>
+
+        <% if (auction.status !== 'closed') { %>
+          <form action="/auction/<%= auction.slug %>/bid" method="POST" class="bid-form" id="bidForm">
+            <h3>Place Your Bid</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Full name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="amount">Bid Amount ($) *</label>
+                <input type="number" id="amount" name="amount" required step="0.01"
+                  min="<%= auction.currentBid ? (auction.currentBid + 0.01).toFixed(2) : (auction.startingBid + 0.01).toFixed(2) %>"
+                  placeholder="<%= auction.currentBid ? (auction.currentBid + 1).toFixed(2) : (auction.startingBid + 1).toFixed(2) %>">
+              </div>
+              <div class="form-group">
+                <label for="message">Message (optional)</label>
+                <input type="text" id="message" name="message" placeholder="A note with your bid">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-bid">Place Bid</button>
+            <p class="form-note">Minimum bid: $<%= auction.currentBid ? (auction.currentBid + 0.01).toFixed(2) : (auction.startingBid + 0.01).toFixed(2) %></p>
+          </form>
+        <% } %>
+      </div>
+    </div>
+
+    <% if (bids.length > 0) { %>
+    <div class="bid-history" id="bidHistory">
+      <h2>Bid History</h2>
+      <table class="bid-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Bidder</th>
+            <th>Amount</th>
+            <th>Message</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bids.forEach(function(bid, i) { %>
+          <tr class="<%= i === 0 ? 'top-bid' : '' %>">
+            <td><%= i + 1 %></td>
+            <td><%= bid.name %></td>
+            <td class="bid-amt">$<%= bid.amount.toFixed(2) %></td>
+            <td class="bid-msg"><%= bid.message || '—' %></td>
+            <td class="bid-time"><%= new Date(bid.created_at + 'Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<script>
+  window.__auctionSlug = '<%= auction.slug %>';
+  window.__auctionStartingBid = <%= auction.startingBid %>;
+</script>
+<%- include('footer', { includeAppJs: true }) %>

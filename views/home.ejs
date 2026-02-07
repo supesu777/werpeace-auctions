@@ -1,0 +1,91 @@
+<%- include('header', { pageTitle: '' }) %>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>WeRPeace</h1>
+    <p class="hero-tagline">Art &amp; auctions for a more peaceful world</p>
+    <p class="hero-sub">Every bid supports humanitarian programs in conflict-affected communities.</p>
+    <a href="#auctions" class="btn btn-primary">Browse Auctions</a>
+  </div>
+</section>
+
+<section id="auctions" class="section">
+  <div class="container">
+    <h2 class="section-title">Silent Auctions</h2>
+    <p class="section-subtitle">Place your bid on unique peace-inspired items. All proceeds fund humanitarian aid.</p>
+
+    <div class="auction-grid">
+      <% auctions.forEach(function(item) { %>
+      <a href="/auction/<%= item.slug %>" class="auction-card">
+        <div class="card-image">
+          <img src="<%= item.image %>" alt="<%= item.title %>" loading="lazy">
+          <% if (item.status === 'closed') { %>
+            <span class="badge badge-sold">SOLD</span>
+          <% } else { %>
+            <span class="badge badge-live">LIVE</span>
+          <% } %>
+        </div>
+        <div class="card-body">
+          <h3><%= item.title %></h3>
+          <div class="card-bid">
+            <% if (item.currentBid) { %>
+              <span class="current-bid">$<%= item.currentBid.toFixed(2) %></span>
+              <span class="bid-label">current bid</span>
+            <% } else { %>
+              <span class="current-bid">$<%= item.startingBid.toFixed(2) %></span>
+              <span class="bid-label">starting bid</span>
+            <% } %>
+          </div>
+          <span class="bid-count"><%= item.bidCount %> bid<%= item.bidCount !== 1 ? 's' : '' %></span>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="events-grid">
+      <% events.forEach(function(ev) { %>
+      <div class="event-card">
+        <div class="card-image">
+          <img src="<%= ev.image %>" alt="<%= ev.title %>" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3><%= ev.title %></h3>
+          <p class="event-meta">
+            <span class="event-date"><%= new Date(ev.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></span>
+            &middot;
+            <span class="event-location"><%= ev.location %></span>
+          </p>
+          <p><%= ev.description %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">News &amp; Stories</h2>
+    <div class="blog-grid">
+      <% blog.forEach(function(post) { %>
+      <div class="blog-card">
+        <div class="card-image">
+          <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy">
+        </div>
+        <div class="card-body">
+          <p class="blog-date"><%= new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></p>
+          <h3><%= post.title %></h3>
+          <p><%= post.excerpt %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<%- include('footer', { includeAppJs: false }) %>

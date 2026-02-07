@@ -1,0 +1,63 @@
+<%- include('header', { pageTitle: 'Admin' }) %>
+
+<section class="section admin-page">
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <p class="section-subtitle">Manage auctions &mdash; close or reopen items as needed.</p>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Starting</th>
+          <th>Current Bid</th>
+          <th>Bids</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% auctions.forEach(function(item) { %>
+        <tr>
+          <td>
+            <a href="/auction/<%= item.slug %>"><%= item.title %></a>
+          </td>
+          <td>$<%= item.startingBid.toFixed(2) %></td>
+          <td>
+            <% if (item.currentBid) { %>
+              <strong>$<%= item.currentBid.toFixed(2) %></strong>
+              <br><small>by <%= item.highestBidder %></small>
+            <% } else { %>
+              <em>No bids</em>
+            <% } %>
+          </td>
+          <td><%= item.bidCount %></td>
+          <td>
+            <% if (item.status === 'closed') { %>
+              <span class="badge badge-sold">SOLD</span>
+            <% } else { %>
+              <span class="badge badge-live">OPEN</span>
+            <% } %>
+          </td>
+          <td>
+            <% if (item.status === 'closed') { %>
+              <form action="/admin/reopen/<%= item.slug %>" method="POST" style="display:inline">
+                <input type="hidden" name="pass" value="<%= pass %>">
+                <button type="submit" class="btn btn-sm btn-secondary">Reopen</button>
+              </form>
+            <% } else { %>
+              <form action="/admin/close/<%= item.slug %>" method="POST" style="display:inline"
+                onsubmit="return confirm('Close auction for <%= item.title %>?')">
+                <input type="hidden" name="pass" value="<%= pass %>">
+                <button type="submit" class="btn btn-sm btn-danger">Close Auction</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<%- include('footer', { includeAppJs: false }) %>

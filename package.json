@@ -1,0 +1,17 @@
+{
+  "name": "werpeace-auctions",
+  "version": "1.0.0",
+  "description": "WeRPeace standalone auction site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "WeRPeace",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  }
+}

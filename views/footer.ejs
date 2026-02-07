@@ -1,0 +1,21 @@
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>WeRPeace</strong>
+        <p>We Work For Peace &mdash; fostering peace through art, education, and action.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.weworkforpeace.org" target="_blank" rel="noopener">weworkforpeace.org</a>
+        <a href="mailto:info@weworkforpeace.org">info@weworkforpeace.org</a>
+      </div>
+      <div class="footer-copy">
+        &copy; <%= new Date().getFullYear() %> WeRPeace. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <% if (typeof includeAppJs !== 'undefined' && includeAppJs) { %>
+  <script src="/app.js"></script>
+  <% } %>
+</body>
+</html>
