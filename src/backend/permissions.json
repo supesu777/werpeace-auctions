@@ -1,0 +1,7 @@
+{
+  "getAllAuctions": { "type": "WEB" },
+  "getAuction": { "type": "WEB" },
+  "placeBid": { "type": "WEB" },
+  "closeAuction": { "type": "WEB" },
+  "reopenAuction": { "type": "WEB" }
+}

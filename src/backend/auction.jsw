@@ -1,0 +1,144 @@
+import wixData from 'wix-data';
+
+// --- Auction queries ---
+
+export async function getAllAuctions() {
+  const result = await wixData.query('Auctions')
+    .ascending('title')
+    .find({ suppressAuth: true });
+
+  const auctions = result.items;
+
+  // Enrich each auction with bid info
+  const enriched = await Promise.all(auctions.map(async (auction) => {
+    const bidResult = await wixData.query('Bids')
+      .eq('auctionSlug', auction.slug)
+      .descending('amount')
+      .find({ suppressAuth: true });
+
+    const topBid = bidResult.items[0] || null;
+    return {
+      _id: auction._id,
+      title: auction.title,
+      slug: auction.slug,
+      description: auction.description,
+      startingBid: auction.startingBid,
+      image: auction.image,
+      category: auction.category,
+      status: auction.status || 'open',
+      currentBid: topBid ? topBid.amount : null,
+      highestBidder: topBid ? topBid.bidderName : null,
+      bidCount: bidResult.totalCount,
+    };
+  }));
+
+  return enriched;
+}
+
+export async function getAuction(slug) {
+  const result = await wixData.query('Auctions')
+    .eq('slug', slug)
+    .find({ suppressAuth: true });
+
+  if (result.items.length === 0) return null;
+
+  const auction = result.items[0];
+
+  const bidResult = await wixData.query('Bids')
+    .eq('auctionSlug', slug)
+    .descending('amount')
+    .find({ suppressAuth: true });
+
+  return {
+    _id: auction._id,
+    title: auction.title,
+    slug: auction.slug,
+    description: auction.description,
+    startingBid: auction.startingBid,
+    image: auction.image,
+    category: auction.category,
+    status: auction.status || 'open',
+    currentBid: bidResult.items[0] ? bidResult.items[0].amount : null,
+    highestBidder: bidResult.items[0] ? bidResult.items[0].bidderName : null,
+    bidCount: bidResult.totalCount,
+    bids: bidResult.items.map((b, i) => ({
+      rank: i + 1,
+      name: b.bidderName,
+      amount: b.amount,
+      message: b.message || '',
+      date: b._createdDate,
+    })),
+  };
+}
+
+// --- Bid submission ---
+
+export async function placeBid(slug, name, email, amount, message) {
+  // Validate inputs
+  if (!name || !name.trim()) return { error: 'Name is required' };
+  if (!email || !email.trim() || !email.includes('@')) return { error: 'Valid email is required' };
+
+  const numAmount = parseFloat(amount);
+  if (!numAmount || numAmount <= 0) return { error: 'Bid must be a positive number' };
+
+  // Get auction
+  const auctionResult = await wixData.query('Auctions')
+    .eq('slug', slug)
+    .find({ suppressAuth: true });
+
+  if (auctionResult.items.length === 0) return { error: 'Auction not found' };
+  const auction = auctionResult.items[0];
+
+  if (auction.status === 'closed') return { error: 'This auction has been closed' };
+
+  // Check bid exceeds current highest
+  const topBid = await wixData.query('Bids')
+    .eq('auctionSlug', slug)
+    .descending('amount')
+    .limit(1)
+    .find({ suppressAuth: true });
+
+  const minBid = topBid.items.length > 0 ? topBid.items[0].amount : auction.startingBid;
+  if (numAmount <= minBid) {
+    return { error: `Bid must be higher than $${minBid.toFixed(2)}` };
+  }
+
+  // Insert bid
+  await wixData.insert('Bids', {
+    auctionSlug: slug,
+    bidderName: name.trim(),
+    bidderEmail: email.trim(),
+    amount: numAmount,
+    message: (message || '').trim() || null,
+  }, { suppressAuth: true });
+
+  return { success: true };
+}
+
+// --- Admin: close/reopen ---
+
+export async function closeAuction(slug) {
+  const result = await wixData.query('Auctions')
+    .eq('slug', slug)
+    .find({ suppressAuth: true });
+
+  if (result.items.length === 0) return { error: 'Not found' };
+
+  const item = result.items[0];
+  item.status = 'closed';
+  await wixData.update('Auctions', item, { suppressAuth: true });
+  return { success: true };
+}
+
+export async function reopenAuction(slug) {
+  const result = await wixData.query('Auctions')
+    .eq('slug', slug)
+    .find({ suppressAuth: true });
+
+  if (result.items.length === 0) return { error: 'Not found' };
+
+  const item = result.items[0];
+  item.status = 'open';
+  await wixData.update('Auctions', item, { suppressAuth: true });
+  return { success: true };
+}

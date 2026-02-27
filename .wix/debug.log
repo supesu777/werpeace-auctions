@@ -1,0 +1,80 @@
+----- CLI crash report at 2026-02-07T22:43:32.592Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/program.ts:76:15)
+    at _Command.emit (node:events:508:20)
+    at _Command._parseCommand (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1607:14)
+    at _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:16)
+    at <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:39)
+Error Info
+{}
+----- CLI crash report at 2026-02-07T22:43:33.162Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/program.ts:76:15)
+    at _Command.emit (node:events:508:20)
+    at _Command._parseCommand (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1607:14)
+    at _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:16)
+    at <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:39)
+Error Info
+{}
+----- CLI crash report at 2026-02-07T22:50:01.289Z
+Error Trace
+Error: Command failed with exit code 128: git symbolic-ref refs/remotes/origin/HEAD
+fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+    at makeError (/home/admin/.npm-global/lib/node_modules/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/admin/.npm-global/lib/node_modules/node_modules/execa/index.js:124:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getDefaultBranch (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/git/index.ts:10:24)
+    at async publish (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/publish/publish.ts:52:29)
+    at async runCommand (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/run-command.ts:39:5)
+    at async _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/publish.ts:28:7)
+    at async _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:5)
+    at async <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:25)
+Error Info
+{}
+----- CLI crash report at 2026-02-07T22:50:15.801Z
+Error Trace
+Error: Command failed with exit code 128: git symbolic-ref refs/remotes/origin/HEAD
+fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+    at makeError (/home/admin/.npm-global/lib/node_modules/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/admin/.npm-global/lib/node_modules/node_modules/execa/index.js:124:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getDefaultBranch (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/git/index.ts:10:24)
+    at async publish (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/publish/publish.ts:52:29)
+    at async runCommand (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/run-command.ts:39:5)
+    at async _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/publish.ts:28:7)
+    at async _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:5)
+    at async <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:25)
+Error Info
+{}
+----- CLI crash report at 2026-02-07T22:55:18.684Z
+Error Trace
+Error: Command failed with exit code 128: git symbolic-ref refs/remotes/origin/HEAD
+fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+    at makeError (/home/admin/.npm-global/lib/node_modules/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/admin/.npm-global/lib/node_modules/node_modules/execa/index.js:124:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getDefaultBranch (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/git/index.ts:10:24)
+    at async publish (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/publish/publish.ts:52:29)
+    at async runCommand (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/run-command.ts:39:5)
+    at async _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/publish.ts:28:7)
+    at async _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:5)
+    at async <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:25)
+Error Info
+{}
+----- CLI crash report at 2026-02-07T22:59:52.628Z
+Error Trace
+Error: Command failed with exit code 128: git symbolic-ref refs/remotes/origin/HEAD
+fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+    at makeError (/home/admin/.npm-global/lib/node_modules/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/admin/.npm-global/lib/node_modules/node_modules/execa/index.js:124:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getDefaultBranch (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/git/index.ts:10:24)
+    at async publish (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/publish/publish.ts:52:29)
+    at async runCommand (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/run-command.ts:39:5)
+    at async _Command.<anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli-site-old/src/commands/publish.ts:28:7)
+    at async _Command.parseAsync (/home/admin/.npm-global/lib/node_modules/node_modules/commander/lib/command.js:1104:5)
+    at async <anonymous> (/home/admin/.npm-global/lib/node_modules/@wix/cli/src/index.tsx:88:25)
+Error Info
+{}
